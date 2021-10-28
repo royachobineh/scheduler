@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import "components/Application.scss";
+import Appointment from "components/Appointment";
 import DayList from "components/DayList";
 
 const days = [
@@ -36,7 +37,7 @@ export default function Application(props) {
       <img className="sidebar__lhl sidebar--centered" src="images/lhl.png" alt="Lighthouse Labs"/>
       </section>
       <section className="schedule">
-        {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
+      <Appointment key="last" time="5pm" />
       </section>
     </main>
   );
