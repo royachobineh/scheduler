@@ -25,7 +25,7 @@ export default function Form(props) {
       return
     }
 
-    props.onSave(name, interviewer)
+    props.save(name, interviewer)
     setError("")
   }
 
@@ -55,3 +55,5 @@ export default function Form(props) {
     </main>
   )
 }
+
+
