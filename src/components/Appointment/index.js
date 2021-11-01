@@ -6,6 +6,8 @@ import Empty from "./Empty";
 import Form from "./Form";
 import Status from "./Status";
 import Confirm from "./Confirm";
+import Error from "./Error";
+
 
 
 
@@ -18,6 +20,9 @@ const SAVING = "SAVING";
   const CONFIRM = "CONFIRM";
   const DELETING = "DELETING";
   const EDIT = "EDIT";
+  const ERROR_SAVE = "ERROR_SAVE";
+  const ERROR_DELETE = "ERROR_DELETE";
+
 
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
@@ -33,15 +38,22 @@ export default function Appointment(props) {
     props.bookInterview(props.id, interview)
     .then(() =>{
       transition(SHOW)
-    });
+    })
+    .catch((err) => {
+      transition(ERROR_SAVE, true)
+    })
   }
 
    function destroy(){
-     transition(DELETING);
+     transition(DELETING, true);
      props.cancelInterview(props.id)
      .then(() => {
        transition(EMPTY)
-     });
+     })
+     .catch((err) => {
+      transition(ERROR_DELETE, true)
+    })
+     
    }
 
 
@@ -56,6 +68,10 @@ export default function Appointment(props) {
       {mode === CONFIRM && <Confirm message="Are you sure?" onCancel={back} onConfirm={destroy}/>}
       {mode === DELETING && <Status message="DELETING" />}
       {mode === EDIT && <Form interviewers={props.interviewers} save={save} onCancel={back} name={props.interview.student} interviewer={props.interview.interviewer}/>}
+      {mode === ERROR_SAVE && <Error message="Could not save the interview" onClose={back}/>}
+      {mode === ERROR_DELETE && <Error message="Could not delete the interview" onClose={back}/>}
+
+
 
 
     </article>
