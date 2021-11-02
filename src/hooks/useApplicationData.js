@@ -28,6 +28,18 @@ export function useApplicationData(){
   }, [])
 
 
+  const updateSpots = (requestType) => {
+    const dayIndex = state.days.findIndex(day => day.name === state.day);
+    const days = state.days;
+    if (requestType === "create") {
+      days[dayIndex].spots -= 1
+    } else {
+      days[dayIndex].spots += 1
+    }
+    // setState({ ...state, days}) 
+    return days;
+  }
+
   const bookInterview = (id, interview) => {
     
     console.log(id, interview);
@@ -41,9 +53,12 @@ export function useApplicationData(){
         ...state.appointments,
         [id]: appointment
       };
+      const days = updateSpots("create")
+      console.log("This ===============", days);
       setState({
         ...state,
-        appointments
+        appointments,
+        days
       });
     })
 
@@ -60,9 +75,11 @@ export function useApplicationData(){
         ...state.appointments,
         [id]: appointment
       };
+      const days = updateSpots();
       setState({
         ...state,
-        appointments
+        appointments,
+        days
       });
 
 
