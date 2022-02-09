@@ -1,6 +1,17 @@
 # Interview Scheduler
 
-Interview Scheduler is a single-page, React application. It allows users to create, edit and delete interview appointments.
+The Interviewer Scheduler is a single page application built with React as part of Lighthouse Lab's Web Development Bootcamp. The app allows a user to book appointments, edit and also delete their bookings. The data is served from the scheduler-api using a PostgreSQL database.
+
+## Demo
+Create New Interview Booking
+![Create new interview](docs/scheduler-create.gif)
+
+Edit and Delete Interview Bookings
+![Edit and delete interviews](docs/scheduler-edit-delete.gif)
+
+## Setup
+
+Install dependencies with `npm install`.
 
 ## Running Webpack Development Server
 
@@ -21,27 +32,12 @@ npm run storybook
 ```
 
 ## Dependencies
+- React
+- Axios
+- classnames
+- normalize
 
-```sh
-axios 0.21.1
-```
-
-```sh
-classnames 2.2.6
-```
-
-```sh
-mormalize.css 8.0.1
-```
-
-```sh
-react 16.9.0
-```
-
-```sh
-react-dom 16.9.0
-```
-
-```sh
-react-scripts 3.0.0
-```
+## devDependencies
+- Babel
+- Storybook
+- Testing Library
